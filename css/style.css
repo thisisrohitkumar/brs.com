@@ -69,6 +69,10 @@ a{
     height: 50px;
 }
 
+.container{
+    display: none;
+}
+
 @media only screen and (max-width: 746px){
 
     .warning{
@@ -80,6 +84,7 @@ a{
         height: 100%;
         background-color: var(--accent-color);
         position: relative;
+        display: block;
     }
 
     header{
