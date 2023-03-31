@@ -69,6 +69,7 @@ a{
     height: 50px;
 }
 
+<<<<<<< HEAD
 .warning{
     display: none;
 }
@@ -251,6 +252,10 @@ main .steps-text p{
     background-color: var(--secondary-color);
     color: var(--accent-color);
     justify-content: center;
+=======
+.container{
+    display: none;
+>>>>>>> d7424e7dd4ce7aef6df7beb19b16e43c1e89c868
 }
 
 @media only screen and (max-width: 746px){
@@ -264,6 +269,7 @@ main .steps-text p{
         height: 100%;
         background-color: var(--accent-color);
         position: relative;
+        display: block;
     }
 
     header{
