@@ -1,11 +1,18 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['user'])){
+        header('location: profile.php');
+    } 
+?>
+<?php include 'db.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup | BRS | Rent a Bicycle | NITK</title>
-    <link rel="stylesheet" href="css/signup.css">
+    <title>Login | BRS | Rent a Bicycle | NITK</title>
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/custom-scrollbar.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
@@ -25,7 +32,7 @@
                 <a href="index.html"><img src="img/logo.png" alt="BRS Logo"></a>
             </span>
             <span class="brand-name">
-                <p>Sign Up</p>
+                <p>Login</p>
             </span>
             <span class="hamburger" id="hamburger" onclick="open_nav()">
                 <i class="fa-solid fa-bars"></i>
@@ -48,33 +55,43 @@
             <span>
                 <form action="" method="post">
                     <table>
-                        
                         <tr>
                             <td style="text-align: center;">
-                                <h4>Welcome To BRS</h4>
+                                <img src="img/logo.png" alt="" width="150" height="150">
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align: center;">
-                                <p style="color: green;">*Account Created Successfully</p>
+                                <h4>Welcome Back To BRS</h4>
+                                <br>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label for="name">Full Name</label>
-                                <input type="text" placeholder="Enter Your Full Name..." name = "name" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="rollno">Roll No.</label>
-                                <input type="number" placeholder="Enter Your Roll No..." name = "rollno" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="mobile">Mobile</label>
-                                <input type="text" placeholder="Enter Your Mobile No..." name = "email" required>
+                            <td style="text-align: center;">
+
+                                <?php
+                                    if(isset($_POST['login'])){
+
+                                        $email = $_POST['email'];
+                                        $password = $_POST['password'];
+
+                                        $sql = "SELECT * FROM user_details WHERE email = '$email' AND password = '$password'";
+
+                                        $result = mysqli_query($conn, $sql);  
+                                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+                                        $count = mysqli_num_rows($result);  
+                                        if($count == 1){
+                                            $_SESSION['user'] = $email;
+                                            header("location: profile.php");
+                                        }                                        
+                                        else {
+                                        echo "<p style='color: tomato;'>*Invalid Email or Password</p>";
+                                        }
+
+                                        $conn->close();
+
+                                    }
+                                ?>
                             </td>
                         </tr>
                         <tr>
@@ -89,16 +106,20 @@
                                 <input type="password" placeholder="Enter Your Password..." name = "password" required>
                             </td>
                         </tr>
-                        
                         <tr>
-                            <td>
-                                <input type="submit" name = "submit" value="SIGNUP">
+                            <td style="text-align: right; margin-bottom: 5px;">
+                                <a href="reset.html" style="color: black">Reset Password?</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="login.html">
-                                    <input type="button" name = "login" value="Already Registered? Login here">
+                                <input type="submit" name = "login" value="LOGIN">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="signup.php">
+                                    <input type="button" name = "register" value="New to BRS? Signup here">
                                 </a>
                             </td>
                         </tr>
@@ -135,7 +156,7 @@
                 </a>
             </span>
             <span class="account">
-                <a href="login.html" style="color: tomato;">
+                <a href="login.php" style="color: tomato;">
                     <i class="fa-solid fa-user-tie"></i>
                     <p>Profile</p>
                 </a>

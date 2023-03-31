@@ -204,7 +204,7 @@ main .profile{
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     column-gap: 20px;
 }
 

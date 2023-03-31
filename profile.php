@@ -1,11 +1,18 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header('location: login.php');
+    } 
+?>
+<?php include 'db.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | BRS | Rent a Bicycle | NITK</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>Profile| BRS | Rent a Bicycle | NITK</title>
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/custom-scrollbar.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
@@ -25,7 +32,7 @@
                 <a href="index.html"><img src="img/logo.png" alt="BRS Logo"></a>
             </span>
             <span class="brand-name">
-                <p>Login</p>
+                <p>Profile</p>
             </span>
             <span class="hamburger" id="hamburger" onclick="open_nav()">
                 <i class="fa-solid fa-bars"></i>
@@ -44,59 +51,28 @@
             </ul>
         </nav>
         <main>
-           
-            <span>
-                <form action="" method="post">
-                    <table>
-                        <tr>
-                            <td style="text-align: center;">
-                                <img src="img/logo.png" alt="" width="150" height="150">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <h4>Welcome Back To BRS</h4>
-                                <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <p style="color: tomato;">*Invalid Email or Password</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="email">Email</label>
-                                <input type="email" placeholder="Enter Your Email ID..." name = "email" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="password">Password</label>
-                                <input type="password" placeholder="Enter Your Password..." name = "password" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right; margin-bottom: 5px;">
-                                <a href="reset.html" style="color: black">Reset Password?</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="submit" name = "submit" value="LOGIN">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="signup.html">
-                                    <input type="button" name = "register" value="New to BRS? Signup here">
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+            <span class="profile">
+                <div class="user-img">
+                    <img src="img/user.jpg" alt="">
+                </div>
+                <div class="user-details">
+                    <?php 
+                        $user = $_SESSION['user'];
+                        $sql = "SELECT * FROM user_details WHERE email = '$user'";
+                        $result = mysqli_query($conn, $sql);  
+                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                    ?>
+                    <p><?php echo $row['name']?></p>
+                    <p><?php echo $row['rollno']?></p>
+                    <p><?php echo $row['email']?></p>
+                    <p><?php echo $row['mobile']?></p>
+                </div>
             </span>
-            
+            <span><p>My Rides</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <!-- <span><p>Invite and Earn</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <span><p>Address</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span> -->
+            <a href="logout.php"><span class="logout"><p>Logout</p></span></a>
+            <p>beta version 1.0.0</p>
         </main>
         <div class="bottom-nav" id="bottom-nav">
             <span class="home">
@@ -126,7 +102,7 @@
                 </a>
             </span>
             <span class="account">
-                <a href="login.html" style="color: tomato;">
+                <a href="login.php" style="color: tomato;">
                     <i class="fa-solid fa-user-tie"></i>
                     <p>Profile</p>
                 </a>
