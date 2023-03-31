@@ -158,7 +158,7 @@
                 </a>
             </span>
             <span class="account">
-                <a href="profile.html">
+                <a href="login.html">
                     <i class="fa-solid fa-user-tie"></i>
                     <p>Profile</p>
                 </a>

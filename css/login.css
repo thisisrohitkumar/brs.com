@@ -230,7 +230,7 @@ main span{
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background-color: white;
     border-radius: 10px;
     width: 95%;
@@ -248,6 +248,25 @@ main .profile i{
     color: white;
 }
 
+main span input{
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+main span input[type=submit]{
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+main span input[type=button]{
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border: none;
+    margin-top: 5px;
+}
 
 .logout{
     background-color: var(--secondary-color);
@@ -421,7 +440,7 @@ main .profile i{
         margin-bottom: 10px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         background-color: white;
         border-radius: 10px;
         width: 95%;
@@ -437,6 +456,26 @@ main .profile i{
         align-items: center;
         justify-content: center;
         color: white;
+    }
+
+    main span input{
+        font-size: 18px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    main span input[type=submit]{
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+    }
+
+    main span input[type=button]{
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        border: none;
+        margin-top: 5px;
     }
 
     .logout{
