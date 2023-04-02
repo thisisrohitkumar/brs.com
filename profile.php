@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div class="warning" id="warning">
+    <!-- <div class="warning" id="warning">
         <span>
             <div class="close" onclick="close_warning()" title="Use Anyway">
                 <i class="fa-regular fa-circle-xmark"></i>
@@ -25,7 +25,7 @@
             <img src="img/warning-icon.png" alt="warning icon" title="This site is not desktop friendly">
             <p>Please open this site on a Mobile device</p>
         </span>
-    </div>
+    </div> -->
     <div class="container" id="container">
         <header>
             <span class="brand-logo">
@@ -61,6 +61,8 @@
                         $sql = "SELECT * FROM user_details WHERE email = '$user'";
                         $result = mysqli_query($conn, $sql);  
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                        $_SESSION['user_id'] = $row['user_id'];
                     ?>
                     <p><?php echo $row['name']?></p>
                     <p><?php echo $row['rollno']?></p>
@@ -68,7 +70,11 @@
                     <p><?php echo $row['mobile']?></p>
                 </div>
             </span>
-            <span><p>My Rides</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <span style="padding: 0;">
+            <a href="rides.php" style="width: 100%; color: black;">
+            <span><p>My Rides</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span></a>
+            </span>
+            
             <!-- <span><p>Invite and Earn</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             <span><p>Address</p><i class="fa-solid fa-arrow-up-right-from-square"></i></span> -->
             <a href="logout.php"><span class="logout"><p>Logout</p></span></a>

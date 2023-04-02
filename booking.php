@@ -1,11 +1,22 @@
+<?php  
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header('location: login.php');
+    } 
+
+    $id = $_GET['id'];
+    $userId = $_SESSION['user_id'];
+
+?>
+<?php include "db.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About BRS | Rent a Bicycle | NITK</title>
-    <link rel="stylesheet" href="css/about.css">
+    <title>Booking | BRS | Rent a Bicycle | NITK</title>
+    <link rel="stylesheet" href="css/booking.css">
     <link rel="stylesheet" href="css/custom-scrollbar.css">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
@@ -25,7 +36,7 @@
                 <a href="index.html"><img src="img/logo.png" alt="BRS Logo"></a>
             </span>
             <span class="brand-name">
-                <p>About BRS</p>
+                <p>Ride Status</p>
             </span>
             <span class="hamburger" id="hamburger" onclick="open_nav()">
                 <i class="fa-solid fa-bars"></i>
@@ -36,32 +47,43 @@
         </header>
         <nav id="nav" class="nav">
             <ul>
-                <ul>
-                    <li><a href="about.html">About BRS</a></li>
-                    <li><a href="developers.html">Developers</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="support.html" style="color: green"><b>Support Us</b></a></li>
-                    <li>Version 1.1.0</li>
-                </ul>
+                <li><a href="about.html">About BRS</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="support.html" style="color: green"><b>Support Us</b></a></li>
+                <li>Version 1.1.0</li>
             </ul>
         </nav>
+
         <main>
-            <span>
-                <p><b>BRS - Bicycle Rental Services</b></p>
-            </span>
-            <span>
-                <p style="text-align: justify; text-justify: inter-word;">BRS stands for Bicycle Rental Services. It is an Indian bicycle sharing platform, headquartered in Mangalore. The company was founded in 2023 by Rohit Kumar along with his 4 classmates. It currently operates in 3+ college campuses.</p>
-            </span>
-            <span>
-                <p style="text-align: justify; text-justify: inter-word;">Using BRS, Customers can rent a bicycle very easily. BRS has a beautiful User Interface with makes it user friendly to use. Our Aim is to burn less fuel and cycle more.</p>
-            </span>
-            <span>
-                <p style="text-align: justify; text-justify: inter-word;">Happy Cycling! &#128515	</p>
-            </span>
+            
+
+            <?php 
+                $sql = "INSERT INTO rentals(bicycle_id, user_id, payment_status, ride_status) VALUES('$id', '$userId', 'Unpaid', 'Booked')";                
+                if ($conn->query($sql) === TRUE) {
+                    echo "<span>
+                    <img src='img/booked.gif' alt='' width='400' height='300'>
+                </span>
+                <span>
+                    <p>Congratulations ". $_SESSION['username'] . ", Your Ride Booked Successfully. <br><br> You Can Visit the location and Pick Up the Bicycle and Enjoy your Ride.</p>
+                </span>
+                <span>
+                <p style='text-align: justify; text-justify: inter-word;'>Happy Cycling! &#128515	</p>
+                </span>";
+                    } else {
+                    echo "<span><p>Failed to book your ride at this moment. Please try after some time.</p></span>";
+                    }
+
+                    $conn->close();
+            ?>
+                            
+            
+            
         </main>
+        
         <div class="bottom-nav" id="bottom-nav">
             <span class="home">
-                <a href="index.html">
+                <a href="index.html" >
                     <i class="fa-solid fa-house"></i>
                 <p>Home</p>
                 </a>
@@ -73,17 +95,17 @@
                 </a>
             </span>
             <span class="search">
-                <span class="circle">
-                    <a href="search.php">
+                <a href="search.php">
+                    <span class="circle">
                         <i class="fa-solid fa-bicycle"></i>
                         <p>Search</p>
-                    </a>
-                </span>
+                    </span>
+                </a>
             </span>
             <span class="offers">
                 <a href="offers.html">
                     <i class="fa-sharp fa-solid fa-gift"></i>
-                    <p>Offers</p>
+                <p>Offers</p>
                 </a>
             </span>
             <span class="account">

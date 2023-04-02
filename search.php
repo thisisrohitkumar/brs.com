@@ -1,4 +1,7 @@
-<?php include "db.php";?>
+
+<?php include "db.php";
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,7 @@
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div class="warning" id="warning">
+    <!-- <div class="warning" id="warning">
         <span>
             <div class="close" onclick="close_warning()" title="Use Anyway">
                 <i class="fa-regular fa-circle-xmark"></i>
@@ -19,7 +22,7 @@
             <img src="img/warning-icon.png" alt="warning icon" title="This site is not desktop friendly">
             <p>Please open this site on a Mobile device</p>
         </span>
-    </div>
+    </div> -->
     <div class="container" id="container">
         <header>
             <span class="brand-logo">
@@ -86,7 +89,7 @@
                                             <td>
                                                 Name :
                                             </td>
-                                            <td>Leader Scout</td>
+                                            <td>" . $row['bicycle_name'] . "</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -115,8 +118,14 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class='rent-btn'>
-                                    <p>RENT for Rs. " . $row['rent_price'] . " per day</p>
+                                <div class='rent-bdtn'>
+                                    
+                                        <a href='booking.php?id=".$row['bicycle_id']."'>
+                                        <button type='submit' name='rent'>
+                                        <p>RENT for Rs. " . $row['rent_price'] . " per day</p>
+                                        </button>
+                                        </a>
+                                    
                                 </div>
                             </div>
                         </span>";
