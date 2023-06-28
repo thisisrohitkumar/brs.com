@@ -14,7 +14,7 @@ The Bicycle Rental System is a web application that allows users to rent bicycle
 ## Installation
 To run the Bicycle Rental System locally, follow these steps:
 
-1. Clone the repository: (https://github.com/thisisrohitkumar/brs.com.git)
+1. Clone the repository: https://github.com/thisisrohitkumar/brs.com.git
 
 2. Install the necessary dependencies i.e. XAMPP Server
 
@@ -55,7 +55,7 @@ Please make sure to follow the coding standards and include appropriate tests fo
 ## Contact
 For any questions or suggestions, feel free to reach out:
 
-- GitHub Repository: (https://github.com/thisisrohitkumar/brs.com)
+- GitHub Repository: https://github.com/thisisrohitkumar/brs.com
 - Email: [thisisrohitkumar@outlook.com](mailto:thisisrohitkumar@outlook.com)
 
 
