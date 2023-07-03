@@ -20,7 +20,7 @@ To run the Bicycle Rental System locally, follow these steps:
 
 3. Set up the database:
    - Create a new MySQL database.
-   - Import the database schema and sample data from `brs.sql`.
+   - Import the database schema and sample data from *project-folder*/sql/bicycles.sql
 
 4. Start XAMPP server.
 
